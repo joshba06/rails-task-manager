@@ -1,0 +1,33 @@
+<div class="container">
+
+  <div class="row m-4">
+    <div class="col">
+      <h1>My tasks</h1>
+    </div>
+  </div>
+
+  <form action="#">
+    <% @tasks.each_with_index do |task, index|  %>
+
+      <div class="row m-4">
+        <div class="col">
+          <input type="checkbox" id="vehicle<%=index%>" name="vehicle<%=index%>" <%=task.completed ? 'checked' : '' %>>
+          <label for="vehicle<%=index%>"><%= link_to task.title, task_path(task)%> | <%= link_to "Delete",
+                          task_path(task),
+                          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+                        %></label><br>
+        </div>
+      </div>
+
+    <% end  %>
+  </form>
+
+      <div class="row m-4">
+        <div class="col">
+          <%= link_to "Create a new task", new_task_path %>
+        </div>
+      </div>
+
+
+
+</div>
